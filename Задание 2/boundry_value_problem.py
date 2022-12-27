@@ -1,6 +1,6 @@
 from math import *
 
-""" Заданные функции """
+""" Р—Р°РґР°РЅРЅС‹Рµ С„СѓРЅРєС†РёРё """
 def testp(x):
     return 0
 
@@ -19,7 +19,7 @@ def q(x):
 def f(x):
     return 3
 
-""" Реализация алгоритма """
+""" Р РµР°Р»РёР·Р°С†РёСЏ Р°Р»РіРѕСЂРёС‚РјР° """
 def alg(p, q, f, x0, xn, r1, s1, t1, r2, s2, t2, n):
     res = []
     h = (xn - x0) / n
@@ -47,7 +47,7 @@ def alg(p, q, f, x0, xn, r1, s1, t1, r2, s2, t2, n):
         res.append((x[i], y[i]))
     return res
 
-""" Выполнение программы """
+""" Р’С‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹ """
 def main():
     print(" --- testf 4 ---")
     res = alg(testp, testq, testf, -1, 1, 1, 0, 0, 1, 0, 0, 4)
