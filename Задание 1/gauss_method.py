@@ -1,4 +1,4 @@
-""" Функция возвращает единичную матрицу порядка n """
+""" Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ РµРґРёРЅРёС‡РЅСѓСЋ РјР°С‚СЂРёС†Сѓ РїРѕСЂСЏРґРєР° n """
 def identity_matrix(n):
     i_matrix = []
     for i in range(n):
@@ -11,12 +11,12 @@ def identity_matrix(n):
         i_matrix.append(line)
     return i_matrix
 
-""" Ввод СЛАУ (матрицы A и вектора b) из файла - приложение 1-2 """
+""" Р’РІРѕРґ РЎР›РђРЈ (РјР°С‚СЂРёС†С‹ A Рё РІРµРєС‚РѕСЂР° b) РёР· С„Р°Р№Р»Р° - РїСЂРёР»РѕР¶РµРЅРёРµ 1-2 """
 def get_system_from_file(path):
     with open(path, "r") as file:
-        n = int(file.readline())    # порядок матрицы A
-        a = []    # матрица A
-        b = []    # вектор b
+        n = int(file.readline())    # РїРѕСЂСЏРґРѕРє РјР°С‚СЂРёС†С‹ A
+        a = []    # РјР°С‚СЂРёС†Р° A
+        b = []    # РІРµРєС‚РѕСЂ b
         for line in file:
             ln = list(map(float, line.split()))
             tmp = [ln.pop(-1)]
@@ -24,18 +24,18 @@ def get_system_from_file(path):
             a.append(ln)
     return n, a, b
 
-""" Генерация СЛАУ (матрицы A и вектора b) с помощью функций - приложение 2 (пример 1-6) """
-def generate_matrix_element(i, j, n=25, m=10):    # функции для генерации элемента [i, j] матрицы A
+""" Р“РµРЅРµСЂР°С†РёСЏ РЎР›РђРЈ (РјР°С‚СЂРёС†С‹ A Рё РІРµРєС‚РѕСЂР° b) СЃ РїРѕРјРѕС‰СЊСЋ С„СѓРЅРєС†РёР№ - РїСЂРёР»РѕР¶РµРЅРёРµ 2 (РїСЂРёРјРµСЂ 1-6) """
+def generate_matrix_element(i, j, n=25, m=10):    # С„СѓРЅРєС†РёРё РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЌР»РµРјРµРЅС‚Р° [i, j] РјР°С‚СЂРёС†С‹ A
     if i != j:
         return (i + j) / (m + n)
     return n + m ** 2 + j / m + i / n
 
-def generate_vector_element(i, n=25):    # функция для генерации элемента [i] вектора b
+def generate_vector_element(i, n=25):    # С„СѓРЅРєС†РёСЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЌР»РµРјРµРЅС‚Р° [i] РІРµРєС‚РѕСЂР° b
     return i ** 2 - n
 
 def get_system_by_generation(matrfunc, linefunc, n=25):
-    a = []    # матрица A
-    b = []    # вектор b
+    a = []    # РјР°С‚СЂРёС†Р° A
+    b = []    # РІРµРєС‚РѕСЂ b
     for i in range(n):
         line = []
         for j in range(n):
@@ -45,11 +45,11 @@ def get_system_by_generation(matrfunc, linefunc, n=25):
         b.append([linefunc(i)])
     return n, a, b
 
-""" Ввод СЛАУ (матрицы A и вектора b) со стандартного потока ввода """
+""" Р’РІРѕРґ РЎР›РђРЈ (РјР°С‚СЂРёС†С‹ A Рё РІРµРєС‚РѕСЂР° b) СЃРѕ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕС‚РѕРєР° РІРІРѕРґР° """
 def get_system_from_stdin():
-    n = int(input())    # порядок матрицы A
-    a = []    # матрица A
-    b = []    # вектор b
+    n = int(input())    # РїРѕСЂСЏРґРѕРє РјР°С‚СЂРёС†С‹ A
+    a = []    # РјР°С‚СЂРёС†Р° A
+    b = []    # РІРµРєС‚РѕСЂ b
     for i in range(n):
         line = list(map(float, input().split()))
         tmp = [line.pop(-1)]
@@ -57,15 +57,15 @@ def get_system_from_stdin():
         a.append(line)
     return n, a, b
 
-""" Вывод матрицы """
+""" Р’С‹РІРѕРґ РјР°С‚СЂРёС†С‹ """
 def print_matrix(matrix):
     if matrix == -1:
         return
     for i in range(len(matrix)):
         print(*matrix[i])
 
-""" Вывод СЛАУ (матрицы A и вектора b) для WolframAlpha """
-def print_wolfram_matrix(matrix):    # вывод матрицы
+""" Р’С‹РІРѕРґ РЎР›РђРЈ (РјР°С‚СЂРёС†С‹ A Рё РІРµРєС‚РѕСЂР° b) РґР»СЏ WolframAlpha """
+def print_wolfram_matrix(matrix):    # РІС‹РІРѕРґ РјР°С‚СЂРёС†С‹
     if matrix == -1:
         return
     print('(', end='')
@@ -77,7 +77,7 @@ def print_wolfram_matrix(matrix):    # вывод матрицы
             print(tuple(matrix[i]), end='')
     print(')', end='')
 
-def print_vector(b):    # вывод вектора
+def print_vector(b):    # РІС‹РІРѕРґ РІРµРєС‚РѕСЂР°
     print('(', end='')
     n = len(b)
     for i in range(n):
@@ -107,7 +107,7 @@ def print_wolfram(matrix, b):
             print('x' + str(i + 1), end='')
     print('))', end='')
 
-""" Вычисление бесконечной нормы марицы """
+""" Р’С‹С‡РёСЃР»РµРЅРёРµ Р±РµСЃРєРѕРЅРµС‡РЅРѕР№ РЅРѕСЂРјС‹ РјР°СЂРёС†С‹ """
 def matrix_norm(matrix):
     res = 0
     for i in range(len(matrix)):
@@ -118,24 +118,24 @@ def matrix_norm(matrix):
             res = tmp
     return res
 
-""" Вычисление числа обусловленности матрицы """
+""" Р’С‹С‡РёСЃР»РµРЅРёРµ С‡РёСЃР»Р° РѕР±СѓСЃР»РѕРІР»РµРЅРЅРѕСЃС‚Рё РјР°С‚СЂРёС†С‹ """
 def conditional_number(matrix, method, det):
     return matrix_norm(matrix) * matrix_norm(inverse_matrix(matrix, method, det))
 
-""" Вычисление обратной матрицы """
+""" Р’С‹С‡РёСЃР»РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹ """
 def inverse_matrix(matrix, method, det):
     mtrx = method(augmented_matrix(matrix, identity_matrix(len(matrix))), det)
     res = get_answer(mtrx)
     return res
 
-""" Функция возвращает расширенную матрицу """
+""" Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ СЂР°СЃС€РёСЂРµРЅРЅСѓСЋ РјР°С‚СЂРёС†Сѓ """
 def augmented_matrix(matrix1, matrix2):
     res = []
     for i in range(len(matrix1)):
         res.append(matrix1[i] + matrix2[i])
     return res
 
-""" Функция извлекает из расширенной матрицы ответ (вектор при решении СЛАУ/матрицу при поиске обратной матрицы) """
+""" Р¤СѓРЅРєС†РёСЏ РёР·РІР»РµРєР°РµС‚ РёР· СЂР°СЃС€РёСЂРµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ РѕС‚РІРµС‚ (РІРµРєС‚РѕСЂ РїСЂРё СЂРµС€РµРЅРёРё РЎР›РђРЈ/РјР°С‚СЂРёС†Сѓ РїСЂРё РїРѕРёСЃРєРµ РѕР±СЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹) """
 def get_answer(matrix):
     if matrix == -1:
         return -1
@@ -149,26 +149,26 @@ def get_answer(matrix):
         ans.append(line)
     return ans
 
-""" Элементарные преобразования строчек матрицы """
-def swap_lines(matrix, i, j):    # функция меняет i-ую и j-ую строки местами
+""" Р­Р»РµРјРµРЅС‚Р°СЂРЅС‹Рµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ СЃС‚СЂРѕС‡РµРє РјР°С‚СЂРёС†С‹ """
+def swap_lines(matrix, i, j):    # С„СѓРЅРєС†РёСЏ РјРµРЅСЏРµС‚ i-СѓСЋ Рё j-СѓСЋ СЃС‚СЂРѕРєРё РјРµСЃС‚Р°РјРё
     matrix[i], matrix[j] = matrix[j], matrix[i]
 
-def mul_line(matrix, i, num):    # функция умножает i-ую строку матрицы на число num
+def mul_line(matrix, i, num):    # С„СѓРЅРєС†РёСЏ СѓРјРЅРѕР¶Р°РµС‚ i-СѓСЋ СЃС‚СЂРѕРєСѓ РјР°С‚СЂРёС†С‹ РЅР° С‡РёСЃР»Рѕ num
     for j in range(len(matrix[0])):
         matrix[i][j] *= num
 
-def add_lines(matrix, i1, i2, coef):    # функция добавляет и i1-ой строке i2-ую с коэффициентом coef
+def add_lines(matrix, i1, i2, coef):    # С„СѓРЅРєС†РёСЏ РґРѕР±Р°РІР»СЏРµС‚ Рё i1-РѕР№ СЃС‚СЂРѕРєРµ i2-СѓСЋ СЃ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРј coef
     for j in range(len(matrix[0])):
         matrix[i1][j] += coef * matrix[i2][j]
 
-""" Метод Гаусса """
-""" В зависимости от расширенной матрицы (матрица A + вектор-столбец b/единичная матрица) вычисляет либо решение СЛАУ, либо обратную матрицу """
+""" РњРµС‚РѕРґ Р“Р°СѓСЃСЃР° """
+""" Р’ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂР°СЃС€РёСЂРµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ (РјР°С‚СЂРёС†Р° A + РІРµРєС‚РѕСЂ-СЃС‚РѕР»Р±РµС† b/РµРґРёРЅРёС‡РЅР°СЏ РјР°С‚СЂРёС†Р°) РІС‹С‡РёСЃР»СЏРµС‚ Р»РёР±Рѕ СЂРµС€РµРЅРёРµ РЎР›РђРЈ, Р»РёР±Рѕ РѕР±СЂР°С‚РЅСѓСЋ РјР°С‚СЂРёС†Сѓ """
 def gauss_method(matrix, det):
     n = len(matrix)
     swap_counter = 0
     det[0] = 1
 
-    # Прямой ход
+    # РџСЂСЏРјРѕР№ С…РѕРґ
 
     for j in range(n):
         for i in range(j, n):
@@ -179,7 +179,7 @@ def gauss_method(matrix, det):
         
         det[0] *= matrix[j][j]
         if matrix[j][j] == 0:
-            print("\nМатрица - вырождена. Это противоречит условию")
+            print("\nРњР°С‚СЂРёС†Р° - РІС‹СЂРѕР¶РґРµРЅР°. Р­С‚Рѕ РїСЂРѕС‚РёРІРѕСЂРµС‡РёС‚ СѓСЃР»РѕРІРёСЋ")
             return -1
 
         mul_line(matrix, j, 1 / matrix[j][j])
@@ -189,7 +189,7 @@ def gauss_method(matrix, det):
 
     det[0] *= (-1) ** (swap_counter % 2)
 
-    # Обратный ход
+    # РћР±СЂР°С‚РЅС‹Р№ С…РѕРґ
 
     for j in range(n - 1, -1, -1):
         mul_line(matrix, j, 1 / matrix[j][j])
@@ -198,14 +198,14 @@ def gauss_method(matrix, det):
             add_lines(matrix, i, j, coef)
     return matrix
 
-""" Метод Гаусса с выбором главного элемента """
-""" В зависимости от расширенной матрицы (матрица A + вектор-столбец b/единичная матрица) вычисляет либо решение СЛАУ, либо обратную матрицу """
+""" РњРµС‚РѕРґ Р“Р°СѓСЃСЃР° СЃ РІС‹Р±РѕСЂРѕРј РіР»Р°РІРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° """
+""" Р’ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂР°СЃС€РёСЂРµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ (РјР°С‚СЂРёС†Р° A + РІРµРєС‚РѕСЂ-СЃС‚РѕР»Р±РµС† b/РµРґРёРЅРёС‡РЅР°СЏ РјР°С‚СЂРёС†Р°) РІС‹С‡РёСЃР»СЏРµС‚ Р»РёР±Рѕ СЂРµС€РµРЅРёРµ РЎР›РђРЈ, Р»РёР±Рѕ РѕР±СЂР°С‚РЅСѓСЋ РјР°С‚СЂРёС†Сѓ """
 def modified_gauss_method(matrix, det):
     n = len(matrix)
     swap_counter = 0
     det[0] = 1
 
-    # Прямой ход
+    # РџСЂСЏРјРѕР№ С…РѕРґ
 
     for j in range(n):
         leading_elem = abs(matrix[j][j])
@@ -220,7 +220,7 @@ def modified_gauss_method(matrix, det):
 
         det[0] *= matrix[j][j]
         if matrix[j][j] == 0:
-            print("\nМатрица - вырождена. Это противоречит условию")
+            print("\nРњР°С‚СЂРёС†Р° - РІС‹СЂРѕР¶РґРµРЅР°. Р­С‚Рѕ РїСЂРѕС‚РёРІРѕСЂРµС‡РёС‚ СѓСЃР»РѕРІРёСЋ")
             return -1
 
         mul_line(matrix, j, 1 / matrix[j][j])
@@ -230,7 +230,7 @@ def modified_gauss_method(matrix, det):
 
     det[0] *= (-1) ** (swap_counter % 2)
 
-    # Обратный ход
+    # РћР±СЂР°С‚РЅС‹Р№ С…РѕРґ
 
     for j in range(n - 1, -1, -1):
         mul_line(matrix, j, 1 / matrix[j][j])
@@ -240,15 +240,15 @@ def modified_gauss_method(matrix, det):
 
     return matrix
 
-""" Выполнение программы """
+""" Р’С‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹ """
 def main():
-    print("Каким способом ввести СЛАУ (A*x = b)?")
-    print("    1 - из файла (см. приложение 1-2)")
-    print("    2 - сгенерировать (см. приложение 2 (п. 1-6))")
-    print("    3 - со стандартного потока ввода")
+    print("РљР°РєРёРј СЃРїРѕСЃРѕР±РѕРј РІРІРµСЃС‚Рё РЎР›РђРЈ (A*x = b)?")
+    print("    1 - РёР· С„Р°Р№Р»Р° (СЃРј. РїСЂРёР»РѕР¶РµРЅРёРµ 1-2)")
+    print("    2 - СЃРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ (СЃРј. РїСЂРёР»РѕР¶РµРЅРёРµ 2 (Рї. 1-6))")
+    print("    3 - СЃРѕ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕС‚РѕРєР° РІРІРѕРґР°")
     method = int(input())
     if method == 1:
-        print("Введите номер системы: 1, 2 или 3")
+        print("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃРёСЃС‚РµРјС‹: 1, 2 РёР»Рё 3")
         method = int(input())
         if method == 1:
             n, a, b = get_system_from_file('gauss1.txt')
@@ -257,12 +257,12 @@ def main():
         elif method == 3:
             n, a, b = get_system_from_file('gauss3.txt')
         else:
-            print("Неверный номер системы")
+            print("РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ СЃРёСЃС‚РµРјС‹")
             return
     elif method == 2:
         n, a, b = get_system_by_generation(generate_matrix_element, generate_vector_element)
     elif method == 3:
-        print("Вводите СЛАУ в формате:")
+        print("Р’РІРѕРґРёС‚Рµ РЎР›РђРЈ РІ С„РѕСЂРјР°С‚Рµ:")
         print("n")
         print("a11 a12 ... a1n b1")
         print("a21 a22 ... a2n b2")
@@ -270,58 +270,58 @@ def main():
         print("an1 an2 ... ann bn")
         n, a, b = get_system_from_stdin()
     else:
-        print("Неверный номер способа")
+        print("РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ СЃРїРѕСЃРѕР±Р°")
         return
         
-    print("Порядок матрицы A:", n)
+    print("РџРѕСЂСЏРґРѕРє РјР°С‚СЂРёС†С‹ A:", n)
     print()
         
-    print("Матрица A:")
+    print("РњР°С‚СЂРёС†Р° A:")
     print_matrix(a)
     print()
         
-    print("Вектор b:")
+    print("Р’РµРєС‚РѕСЂ b:")
     print_vector(b)
     print()
     
     print()
-    print("Матрица и СЛАУ в формате для проверки в WolframAlpha")
+    print("РњР°С‚СЂРёС†Р° Рё РЎР›РђРЈ РІ С„РѕСЂРјР°С‚Рµ РґР»СЏ РїСЂРѕРІРµСЂРєРё РІ WolframAlpha")
     print_wolfram_matrix(a)
     print()
     print_wolfram(a, b)
     print()
     print()
     
-    det = [10]    # определитель матрицы
+    det = [10]    # РѕРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹
     
-    print("Каким методом решать СЛАУ?")
-    print("    1 - методом Гаусса")
-    print("    2 - модифицированным методом Гаусса")
+    print("РљР°РєРёРј РјРµС‚РѕРґРѕРј СЂРµС€Р°С‚СЊ РЎР›РђРЈ?")
+    print("    1 - РјРµС‚РѕРґРѕРј Р“Р°СѓСЃСЃР°")
+    print("    2 - РјРѕРґРёС„РёС†РёСЂРѕРІР°РЅРЅС‹Рј РјРµС‚РѕРґРѕРј Р“Р°СѓСЃСЃР°")
     method = int(input())
     if method == 1:
         gauss = gauss_method
     elif method == 2:
         gauss = modified_gauss_method
     else:
-        print("Неверный номер метода")
+        print("РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ РјРµС‚РѕРґР°")
         return
         
     ans = get_answer(gauss(augmented_matrix(a, b), det))
     if ans == -1:
         return
     
-    print("\nОтвет:")
+    print("\nРћС‚РІРµС‚:")
     print_vector(ans)
     print()
     
-    print("\nОпределитель матрицы A =", det[0])
+    print("\nРћРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹ A =", det[0])
     print()
     
-    print("Обратная к A матрица:")
+    print("РћР±СЂР°С‚РЅР°СЏ Рє A РјР°С‚СЂРёС†Р°:")
     print_matrix(inverse_matrix(a, gauss, det))
     print()
     
-    print("Число обусловленности матрицы A =", conditional_number(a, gauss, det))
+    print("Р§РёСЃР»Рѕ РѕР±СѓСЃР»РѕРІР»РµРЅРЅРѕСЃС‚Рё РјР°С‚СЂРёС†С‹ A =", conditional_number(a, gauss, det))
     
 
 main()
