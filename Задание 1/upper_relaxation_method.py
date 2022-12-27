@@ -1,29 +1,29 @@
 from copy import deepcopy
 
-""" Ввод СЛАУ (матрицы A и вектора b) из файла - приложение 1-2 """
+""" Р’РІРѕРґ РЎР›РђРЈ (РјР°С‚СЂРёС†С‹ A Рё РІРµРєС‚РѕСЂР° b) РёР· С„Р°Р№Р»Р° - РїСЂРёР»РѕР¶РµРЅРёРµ 1-2 """
 def get_system_from_file(path):
     with open(path, "r") as file:
         n = int(file.readline())
-        a = []    # матрица A
-        b = []    # вектор b
+        a = []    # РјР°С‚СЂРёС†Р° A
+        b = []    # РІРµРєС‚РѕСЂ b
         for line in file:
             ln = list(map(float, line.split()))
             b.append(ln.pop(-1))
             a.append(ln)
     return n, a, b
 
-""" Генерация СЛАУ (матрицы A и вектора b) с помощью функций - приложение 2 (пример 1-6) """
-def generate_matrix_element(i, j, n=25, m=10):    # функции для генерации элемента [i, j] матрицы A
+""" Р“РµРЅРµСЂР°С†РёСЏ РЎР›РђРЈ (РјР°С‚СЂРёС†С‹ A Рё РІРµРєС‚РѕСЂР° b) СЃ РїРѕРјРѕС‰СЊСЋ С„СѓРЅРєС†РёР№ - РїСЂРёР»РѕР¶РµРЅРёРµ 2 (РїСЂРёРјРµСЂ 1-6) """
+def generate_matrix_element(i, j, n=25, m=10):    # С„СѓРЅРєС†РёРё РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЌР»РµРјРµРЅС‚Р° [i, j] РјР°С‚СЂРёС†С‹ A
     if i != j:
         return (i + j) / (m + n)
     return n + m ** 2 + j / m + i / n
 
-def generate_vector_element(i, n=25):    # функция для генерации элемента [i] вектора b
+def generate_vector_element(i, n=25):    # С„СѓРЅРєС†РёСЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЌР»РµРјРµРЅС‚Р° [i] РІРµРєС‚РѕСЂР° b
     return i ** 2 - n
 
 def get_system_by_generation(matrfunc, linefunc, n=25):
-    a = []    # матрица A
-    b = []    # вектор b
+    a = []    # РјР°С‚СЂРёС†Р° A
+    b = []    # РІРµРєС‚РѕСЂ b
     for i in range(n):
         line = []
         for j in range(n):
@@ -33,11 +33,11 @@ def get_system_by_generation(matrfunc, linefunc, n=25):
         b.append(linefunc(i))
     return n, a, b
 
-""" Ввод СЛАУ (матрицы A и вектора b) со стандартного потока ввода """
+""" Р’РІРѕРґ РЎР›РђРЈ (РјР°С‚СЂРёС†С‹ A Рё РІРµРєС‚РѕСЂР° b) СЃРѕ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕС‚РѕРєР° РІРІРѕРґР° """
 def get_system_from_stdin():
     n = int(input())
-    a = []    # матрица A
-    b = []    # вектор b
+    a = []    # РјР°С‚СЂРёС†Р° A
+    b = []    # РІРµРєС‚РѕСЂ b
     for i in range(n):
         line = list(map(float, input().split()))
         b.append(line.pop(-1))
@@ -45,15 +45,15 @@ def get_system_from_stdin():
     return n, a, b
 
 
-""" Вывод матрицы """
+""" Р’С‹РІРѕРґ РјР°С‚СЂРёС†С‹ """
 def print_matrix(matrix):
     if matrix == -1:
         return
     for i in range(len(matrix)):
         print(*matrix[i])
 
-""" Вывод СЛАУ (матрицы A и вектора b) для WolframAlpha """
-def print_wolfram_matrix(matrix):    # вывод матрицы
+""" Р’С‹РІРѕРґ РЎР›РђРЈ (РјР°С‚СЂРёС†С‹ A Рё РІРµРєС‚РѕСЂР° b) РґР»СЏ WolframAlpha """
+def print_wolfram_matrix(matrix):    # РІС‹РІРѕРґ РјР°С‚СЂРёС†С‹
     if matrix == -1:
         return
     print('(', end='')
@@ -65,7 +65,7 @@ def print_wolfram_matrix(matrix):    # вывод матрицы
             print(tuple(matrix[i]), end='')
     print(')', end='')
 
-def print_vector(b):    # вывод вектора
+def print_vector(b):    # РІС‹РІРѕРґ РІРµРєС‚РѕСЂР°
     print('(', end='')
     n = len(b)
     for i in range(n):
@@ -95,7 +95,7 @@ def print_wolfram(matrix, b):
             print('x' + str(i + 1), end='')
     print('))', end='')
 
-""" Вычисление нормы для условия окончания метода верхней релаксации """
+""" Р’С‹С‡РёСЃР»РµРЅРёРµ РЅРѕСЂРјС‹ РґР»СЏ СѓСЃР»РѕРІРёСЏ РѕРєРѕРЅС‡Р°РЅРёСЏ РјРµС‚РѕРґР° РІРµСЂС…РЅРµР№ СЂРµР»Р°РєСЃР°С†РёРё """
 def norm(v1, v2):
     res = 0
     n = len(v1)
@@ -103,14 +103,14 @@ def norm(v1, v2):
         res += abs(v1[i] - v2[i])
     return res
 
-""" Метод верхней релаксации """
-""" (Метод Зейделя - частный случай метода верхней релаксации при w = 1) """
+""" РњРµС‚РѕРґ РІРµСЂС…РЅРµР№ СЂРµР»Р°РєСЃР°С†РёРё """
+""" (РњРµС‚РѕРґ Р—РµР№РґРµР»СЏ - С‡Р°СЃС‚РЅС‹Р№ СЃР»СѓС‡Р°Р№ РјРµС‚РѕРґР° РІРµСЂС…РЅРµР№ СЂРµР»Р°РєСЃР°С†РёРё РїСЂРё w = 1) """
 def upper_relaxation_method(a, b, eps, w):
     n = len(a)
     cur_x = [0 for _ in range(n)]
     prev_x = [0 for _ in range(n)]
     iterations = 0
-    flag = True    # цикл должен выполниться хотя бы 1 раз
+    flag = True    # С†РёРєР» РґРѕР»Р¶РµРЅ РІС‹РїРѕР»РЅРёС‚СЊСЃСЏ С…РѕС‚СЏ Р±С‹ 1 СЂР°Р·
     while norm(cur_x, prev_x) > eps or flag:
         prev_x = deepcopy(cur_x)
         for i in range(n):
@@ -122,22 +122,22 @@ def upper_relaxation_method(a, b, eps, w):
             cur_x[i] = prev_x[i] + w * (b[i] - tmp) / a[i][i]
         iterations += 1
         if iterations > 100000:
-            print("Матрица не является положительно определённой")
+            print("РњР°С‚СЂРёС†Р° РЅРµ СЏРІР»СЏРµС‚СЃСЏ РїРѕР»РѕР¶РёС‚РµР»СЊРЅРѕ РѕРїСЂРµРґРµР»С‘РЅРЅРѕР№")
             return -1, iterations
         flag = False
     for i in range(len(cur_x)):
         cur_x[i] = int(cur_x[i] * 100000000) /100000000
     return cur_x, iterations
 
-""" Выполнение программы """
+""" Р’С‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹ """
 def main():
-    print("Каким способом ввести СЛАУ (A*x = b)?")
-    print("    1 - из файла")
-    print("    2 - сгенерировать (см. приложение 2 (п. 1-6))")
-    print("    3 - со стандартного потока ввода")
+    print("РљР°РєРёРј СЃРїРѕСЃРѕР±РѕРј РІРІРµСЃС‚Рё РЎР›РђРЈ (A*x = b)?")
+    print("    1 - РёР· С„Р°Р№Р»Р°")
+    print("    2 - СЃРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ (СЃРј. РїСЂРёР»РѕР¶РµРЅРёРµ 2 (Рї. 1-6))")
+    print("    3 - СЃРѕ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕС‚РѕРєР° РІРІРѕРґР°")
     method = int(input())
     if method == 1:
-        print("Введите номер системы: 1, 2 или 3")
+        print("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃРёСЃС‚РµРјС‹: 1, 2 РёР»Рё 3")
         method = int(input())
         if method == 1:
             n, a, b = get_system_from_file('relax1.txt')
@@ -146,12 +146,12 @@ def main():
         elif method == 3:
             n, a, b = get_system_from_file('relax3.txt')
         else:
-            print("Неверный номер системы")
+            print("РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ СЃРёСЃС‚РµРјС‹")
             return
     elif method == 2:
         n, a, b = get_system_by_generation(generate_matrix_element, generate_vector_element)
     elif method == 3:
-        print("Вводите СЛАУ в формате:")
+        print("Р’РІРѕРґРёС‚Рµ РЎР›РђРЈ РІ С„РѕСЂРјР°С‚Рµ:")
         print("n")
         print("a11 a12 ... a1n b1")
         print("a21 a22 ... a2n b2")
@@ -159,35 +159,35 @@ def main():
         print("an1 an2 ... ann bn")
         n, a, b = get_system_from_stdin()
     else:
-        print("Неверный номер способа")
+        print("РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ СЃРїРѕСЃРѕР±Р°")
         return
         
-    print("Порядок матрицы A:", n)
+    print("РџРѕСЂСЏРґРѕРє РјР°С‚СЂРёС†С‹ A:", n)
     print()
         
-    print("Матрица A:")
+    print("РњР°С‚СЂРёС†Р° A:")
     print_matrix(a)
     print()
         
-    print("Вектор b:")
+    print("Р’РµРєС‚РѕСЂ b:")
     print_vector(b)
     print()
    
     print()
-    print("Матрица и СЛАУ в формате для проверки в WolframAlpha")
+    print("РњР°С‚СЂРёС†Р° Рё РЎР›РђРЈ РІ С„РѕСЂРјР°С‚Рµ РґР»СЏ РїСЂРѕРІРµСЂРєРё РІ WolframAlpha")
     print_wolfram_matrix(a)
     print()
     print_wolfram(a, b)
     print()
     print()
    
-    print("\nОтвет, полученный методом Зейделя:")
+    print("\nРћС‚РІРµС‚, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РјРµС‚РѕРґРѕРј Р—РµР№РґРµР»СЏ:")
     ans, iterations = upper_relaxation_method(a, b, 0.0000001, 1)
     if a == -1:
         return
     print_vector(ans)
     print()
-    print("    Кол-во итераций ", iterations)
+    print("    РљРѕР»-РІРѕ РёС‚РµСЂР°С†РёР№ ", iterations)
     print()
 
     w = 0.1
@@ -195,11 +195,11 @@ def main():
         if (i == 10):
             w += 0.1
             continue
-        print("\nОтвет, полученный методом верхней релаксации ( w =", w, "):")
+        print("\nРћС‚РІРµС‚, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РјРµС‚РѕРґРѕРј РІРµСЂС…РЅРµР№ СЂРµР»Р°РєСЃР°С†РёРё ( w =", w, "):")
         ans, iterations = upper_relaxation_method(a, b, 0.0000001, w)
         print_vector(ans)
         print()
-        print("    Кол-во итераций ", iterations)
+        print("    РљРѕР»-РІРѕ РёС‚РµСЂР°С†РёР№ ", iterations)
         print()
         w += 0.1
 
